@@ -5,6 +5,7 @@
 *.exe
 *.o
 *.so
+*.txt
 
 #Compressed file
 *.7z
