@@ -19,6 +19,12 @@
  - Maximum Entropy : 전체 분포 h 중에서 wi가 차지할 비중이 얼마나 될까를 구하는 방식
 
 ```
+• Estimate probability of each word given prior context. – P(phone | Please turn off your cell)
+• “n-gram” = sequence of n words – Unigram: P(phone)
+– Bigram: P(phone | cell)
+– Trigram: P(phone | your cell)
+```
+```
 • Chain rule of probability P(your cell phone is good) =
 P(your) * P(cell | your) * P(phone | your cell) * P(is | your cell phone)
 * P(good | your cell phone is)
