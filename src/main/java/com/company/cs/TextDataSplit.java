@@ -8,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -15,7 +17,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.lang.StringUtils;
 
-public class TextAnalysis 
+public class TextDataSplit 
 {
 	public static int totalWords; // total number of words
 	public static int N; // unigram, bigram, trigram ..
@@ -59,7 +61,7 @@ public class TextAnalysis
     {
     	
     	//inFile = new File("test1.txt");
-    	outFile = new File("output.txt");
+    	outFile = new File("trigramOutput.txt");
     	
     	writing = new StringBuilder();
     	
@@ -76,24 +78,33 @@ public class TextAnalysis
     			System.out.println(readList.get(i));
     		}*/
     		String readFile = FileUtils.readFileToString(dirFile,"utf-8");
-    		//readFile.trim();
+    		readFile.trim();
     		long start = System.currentTimeMillis();
     		//input = StringUtils.split(readFile);
-    		input = readFile.split(" ");
+    		input = readFile.split("^[가-힣]*$");
     		long end = System.currentTimeMillis();
-    		System.out.println("실행시간 : " +(end-start)/1000.0+"초 ");
+    		System.out.println("split 실행시간 : " +(end-start)/1000.0+"초 ");
     		
     		System.out.println(input.length);
     		
-    		for(int i=0; i< input.length+2 ; i++)  // add 2 in length to confirm text to the end
+    		long startWrite = System.currentTimeMillis();
+    		
+    		Collection lines = new ArrayList<>();
+    		for(int i=0; i< input.length/5 ; i++)  // add 2 in length to confirm text to the end
     		{
-    			solve(i-(N-1), 0, input.length);
-    			//writing.append(input[i]);
-    			//writing.append("\n");
-    			FileUtils.writeStringToFile(outFile,writing.toString()+"\n",true);
+    			solve(i-(N-1), 0, input.length/5);
+    			System.out.println(writing.toString());
     			writing.setLength(0);
+    			//writing.append("\n");
+    			
+    			//FileUtils.writeStringToFile(outFile,writing.toString()+"\n",true);
+    			//writing.setLength(0);
     		}
-    		System.out.println("for each");
+    		long endWrite = System.currentTimeMillis();
+    		System.out.println("write 실행시간 : "+(endWrite-startWrite)/1000.0+"초 ");
+    		System.out.println("for each success");
+    		
+    		//FileUtils.writeLines(outFile, lines);
     		//FileUtils.writeStringToFile(outFile, writing.toString());
     		
     	} catch( Throwable e) {

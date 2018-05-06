@@ -7,7 +7,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class TextAnalysisTest 
+public class TextDataSplitTest 
     extends TestCase
 {
     /**
@@ -15,7 +15,7 @@ public class TextAnalysisTest
      *
      * @param testName name of the test case
      */
-    public TextAnalysisTest( String testName )
+    public TextDataSplitTest( String testName )
     {
         super( testName );
     }
@@ -25,7 +25,7 @@ public class TextAnalysisTest
      */
     public static Test suite()
     {
-        return new TestSuite( TextAnalysisTest.class );
+        return new TestSuite( TextDataSplitTest.class );
     }
 
     /**
