@@ -17,3 +17,9 @@
  => 확률 0인 값이 나오지 않게 하기 위해서
  
  - Maximum Entropy : 전체 분포 h 중에서 wi가 차지할 비중이 얼마나 될까를 구하는 방식
+
+```
+• Chain rule of probability P(your cell phone is good) =
+P(your) * P(cell | your) * P(phone | your cell) * P(is | your cell phone)
+* P(good | your cell phone is)
+```
