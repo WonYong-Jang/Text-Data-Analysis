@@ -78,27 +78,30 @@ public class TextDataSplit
     			System.out.println(readList.get(i));
     		}*/
     		String readFile = FileUtils.readFileToString(dirFile,"utf-8");
+    		System.out.println("read success! ");
     		readFile.trim();
     		long start = System.currentTimeMillis();
     		//input = StringUtils.split(readFile);
-    		input = readFile.split("^[가-힣]*$");
+    		readFile= readFile.replaceAll("[[:]\\\\/?[*]]", "");
+    		
+    		//readFile = readFile.replaceAll("!\"#[$]%&\\(\\)\\{\\}@`[*]:[+];-.<>,\\^~|'\\[\\]", ""); 
+    		//readFile= readFile.replaceAll("/[\\{\\}\\[\\]\\/?.,;:|\\)*~`!^\\-_+<>@\\#$%&\\\\\\=\\(\\'\\\"]/gi", "");
+    		//input = readFile.split("^[ㄱ-ㅎ가-힣0-9]*$");
     		long end = System.currentTimeMillis();
     		System.out.println("split 실행시간 : " +(end-start)/1000.0+"초 ");
     		
-    		System.out.println(input.length);
+    		//System.out.println(input.length);
     		
     		long startWrite = System.currentTimeMillis();
     		
     		Collection lines = new ArrayList<>();
-    		for(int i=0; i< input.length/5 ; i++)  // add 2 in length to confirm text to the end
+    		System.out.println(readFile);
+    		for(int i=0; i< input.length ; i++)  // add 2 in length to confirm text to the end
     		{
-    			solve(i-(N-1), 0, input.length/5);
-    			System.out.println(writing.toString());
+    			solve(i-(N-1), 0, input.length);
+    		
+    			FileUtils.writeStringToFile(outFile,writing.toString()+"\n",true);
     			writing.setLength(0);
-    			//writing.append("\n");
-    			
-    			//FileUtils.writeStringToFile(outFile,writing.toString()+"\n",true);
-    			//writing.setLength(0);
     		}
     		long endWrite = System.currentTimeMillis();
     		System.out.println("write 실행시간 : "+(endWrite-startWrite)/1000.0+"초 ");
