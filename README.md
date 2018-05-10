@@ -32,3 +32,12 @@ P(car | your) = P( your car ) / P(your)
  => 확률 0인 값이 나오지 않게 하기 위해서
  
  - Maximum Entropy : 전체 분포 h 중에서 wi가 차지할 비중이 얼마나 될까를 구하는 방식
+
+
+1) 대용량 텍스트 파일에서 각 word(어절)에 대한 unigram, bigram, trigram 빈도를 구하시오.
+2) unigram, bigram, trigram 파일로부터 각 word n-gram 확률을 계산하는 프로그램 작성
+    P(w) = freq(w) / N
+    P(wi | wi-1) = freq(wi-1,wi) / freq(wi-1)
+    P(wi | wi-2,wi-1) = freq(wi-2,wi-1,wi) / freq(wi-2,wi-1)
+3) 입력 문장에 대한 출현확률 P(s)를 3가지 방법으로 구하시오.
+    Puni(s), Pbi(s), Ptri(s)
